@@ -22,7 +22,7 @@ const MovieCard = observer(({ movie }: { movie: Movie }) => {
   };
 
   return (
-    <div className="flex flex-col bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden w-full max-w-sm">
+    <div className="flex flex-col justify-between bg-white rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden w-full max-w-sm">
       <Link to={`/movie/${movie.id}`} className="block">
         <div className="aspect-[3/4] w-full overflow-hidden">
           <img
@@ -32,20 +32,22 @@ const MovieCard = observer(({ movie }: { movie: Movie }) => {
           />
         </div>
         <div className="p-4">
-          <h3 className="text-lg font-semibold mb-2">{movie.name}</h3>
-          <p className="text-sm text-gray-500 mb-1">{movie.year}</p>
-          <p className="text-sm text-gray-700">
-            Рейтинг: <span className="font-medium">{average > 0 ? average : 'н/д'}</span>
-          </p>
+          <h3 className="text-lg font-semibold mb-2 text-gray-900">{movie.name ? movie.name: movie.alternativeName}</h3>
+          
+          
         </div>
       </Link>
 
-      <div className="p-4 pt-0">
+      <div className="p-4 pt-0 mb-0">
+        <p className="text-sm text-gray-500 mb-1">Год выпуска: <span className='font-medium text-gray-700'>{movie.year}</span></p>
+        <p className="text-sm mb-2 text-gray-700">
+            Рейтинг: <span className="font-medium">{average > 0 ? average : 'н/д'}</span>
+        </p>
         <button
           onClick={toggleFavorite}
           className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
             isFavorite 
-              ? 'bg-yellow-400 text-black hover:bg-yellow-500' 
+              ? 'bg-blue-500 text-gray-100 hover:bg-blue-600' 
               : 'bg-gray-200 text-gray-800 hover:bg-gray-300'
           }`}
         >
