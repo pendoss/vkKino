@@ -4,7 +4,7 @@ import { useLocation } from 'react-router'
 import FiltersPanel from '~/components/FiltersPanel';
 import MovieStore from '~/stores/movieStore';
 import MovieFilterStore from '~/stores/movieFilterStore';
-import MovieCard from '../components/movieCard'
+import MovieCard from '../components/MovieCard'
 
 const HomePage = observer(() => {
   const location = useLocation();

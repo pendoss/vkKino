@@ -1,6 +1,6 @@
 import { observer } from 'mobx-react-lite';
 import { useEffect } from 'react';
-import MovieCard from '../components/movieCard';
+import MovieCard from '../components/MovieCard';
 import favoriteStore from '~/stores/favoriteStore';
 
 const FavoritesPage = observer(() => {
