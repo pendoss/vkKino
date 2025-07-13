@@ -22,7 +22,7 @@ const YearFilter = observer(({ year, onYearChange }: YearFilterProps) => {
     return (
         <div className="space-y-3">
             <h3 className="text-lg font-semibold text-gray-800">Год выпуска</h3>
-            <div className="flex items-center space-x-3">
+            <div className="space-y-3">
                 <div className="flex flex-col">
                     <label className="text-sm text-gray-600 mb-1">От</label>
                     <input
@@ -31,7 +31,7 @@ const YearFilter = observer(({ year, onYearChange }: YearFilterProps) => {
                         max={currentYear}
                         value={year[0]}
                         onChange={handleMinChange}
-                        className="w-24 px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                 </div>
                 <div className="flex flex-col">
@@ -42,7 +42,7 @@ const YearFilter = observer(({ year, onYearChange }: YearFilterProps) => {
                         max={currentYear}
                         value={year[1]}
                         onChange={handleMaxChange}
-                        className="w-24 px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
                     />
                 </div>
             </div>

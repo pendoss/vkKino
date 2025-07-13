@@ -17,7 +17,9 @@ const MoviePage = observer(() => {
         }
     }, [id]);
 
-    if (!movie) return <div>Загрузка...</div>;
+    if (!movie) return ( <div className="flex justify-center mt-8">
+          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+        </div>);
 
     const isFavorite = favoriteStore.isFavorite(movie.id);
   

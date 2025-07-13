@@ -26,7 +26,6 @@ class MovieFilterStore {
         const params = new URLSearchParams();
         
         if (this.genres.length > 0) {
-            // Кодируем каждый жанр отдельно для правильной работы с кириллицей
             params.set('genres', this.genres.map(genre => encodeURIComponent(genre)).join(','));
         }
         
@@ -42,7 +41,6 @@ class MovieFilterStore {
     }
 
     fromSearchParams(params: URLSearchParams) {
-        // Сбрасываем значения перед установкой новых
         this.reset();
         
         const genres = params.get('genres');
