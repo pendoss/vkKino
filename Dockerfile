@@ -26,6 +26,7 @@ RUN pnpm install --prod --frozen-lockfile
 
 # Копируем собранное приложение
 COPY --from=build /app/build ./build
+COPY --from=build /app/public ./public
 
 # Настраиваем окружение
 ENV NODE_ENV=production
@@ -33,6 +34,10 @@ ENV HOST=0.0.0.0
 ENV PORT=3000
 
 EXPOSE 3000
+
+# Проверяем что приложение работает
+HEALTHCHECK --interval=30s --timeout=10s --start-period=5s --retries=3 \
+  CMD curl -f http://localhost:3000 || exit 1
 
 # Запускаем приложение
 CMD ["pnpm", "run", "start"]
