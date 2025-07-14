@@ -1,13 +1,12 @@
-# React Router
-.react-router
-build
-
 # Зависимости
 node_modules
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# React Router cache
+.react-router
 
 # Локальные переменные окружения
 .env
@@ -36,7 +35,6 @@ Thumbs.db
 .gitignore
 
 # Docker
-Dockerfile
 .dockerignore
 docker-compose*.yml
 
@@ -48,6 +46,7 @@ coverage
 # Прочие
 .husky
 .eslintcache
+README.md
 
 # Документация
 README.md
