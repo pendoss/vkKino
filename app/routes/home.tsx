@@ -1,19 +1,21 @@
 import { observer } from 'mobx-react-lite'
-import { useEffect, useCallback } from 'react'
+import { useEffect } from 'react'
 import { useLocation } from 'react-router'
 import FiltersPanel from '~/components/FiltersPanel';
 import MovieStore from '~/stores/movieStore';
 import MovieFilterStore from '~/stores/movieFilterStore';
-import MovieCard from '../components/MovieCard'
+import MovieCard from '../components/MovieCard';
+import { useInfiniteScroll } from '~/hooks/useInfiniteScroll';
 
 const HomePage = observer(() => {
   const location = useLocation();
 
-  const handleScroll = useCallback(() => {
-    if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1000) {
-      MovieStore.loadMoreMovies();
-    }
-  }, []);
+  useInfiniteScroll(
+    () => MovieStore.loadMoreMovies(),
+    MovieStore.hasMore,
+    MovieStore.loading,
+    1000
+  );
 
   useEffect(() => {
     const searchParams = new URLSearchParams(location.search);
@@ -21,10 +23,7 @@ const HomePage = observer(() => {
     
     const filterParams = MovieFilterStore.getApiParams();
     MovieStore.setFilters(filterParams);
-    
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [location.search, handleScroll]);
+  }, [location.search]);
 
   return (
     <div className="container mx-auto px-4 py-8">

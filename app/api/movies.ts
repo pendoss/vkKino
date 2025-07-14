@@ -1,13 +1,14 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://api.kinopoisk.dev/v1.4',
+  baseURL: import.meta.env.VITE_KINOPOISK_BASE_URL || 'https://api.kinopoisk.dev/v1.4',
   headers: {
-    'X-API-KEY': 'H1G2CP3-9W641HN-KWEXWC6-DFXBYD1',
+    'X-API-KEY': import.meta.env.VITE_KINOPOISK_API_KEY || 'H1G2CP3-9W641HN-KWEXWC6-DFXBYD1',
   },
 });
-//AYC9Q30-TVSMFCY-HJWG6AX-FJH1HER
-//NCBDWBN-3HWMK71-M9XMCZS-QGQX57Y
+
+// AYC9Q30-TVSMFCY-HJWG6AX-FJH1HER
+// NCBDWBN-3HWMK71-M9XMCZS-QGQX57Y
 
 // const fetchData = async (url) => {
 //   try {
@@ -147,7 +148,7 @@ export const fetchPossibleGenres = async (): Promise<{ name: string; slug: strin
   try {
     const response = await axios.get('https://api.kinopoisk.dev/v1/movie/possible-values-by-field?field=genres.name', {
       headers: {
-        'X-API-KEY': 'H1G2CP3-9W641HN-KWEXWC6-DFXBYD1',
+        'X-API-KEY': import.meta.env.VITE_KINOPOISK_API_KEY || 'H1G2CP3-9W641HN-KWEXWC6-DFXBYD1',
       },
     });
     

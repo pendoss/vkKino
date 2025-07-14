@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { fetchPossibleGenres } from '~/api/movies';
+import { useGenres } from '~/hooks/useGenres';
 
 interface GenreFilterProps {
     selectedGenres: string[];
@@ -8,33 +8,11 @@ interface GenreFilterProps {
 }
 
 const GenreFilter = observer(({ selectedGenres, onGenreChange }: GenreFilterProps) => {
-    const [availableGenres, setAvailableGenres] = useState<string[]>([]);
-    const [loading, setLoading] = useState(true);
+    const { availableGenres, loading, error } = useGenres();
     const [showAll, setShowAll] = useState(false);
     const [filtersApplied, setFiltersApplied] = useState(false);
 
     const INITIAL_GENRES_COUNT = 7;
-
-    useEffect(() => {
-        const loadGenres = async () => {
-            try {
-                const genres = await fetchPossibleGenres();
-                setAvailableGenres(genres.map(genre => genre.name));
-            } catch (error) {
-                console.error('Ошибка загрузки жанров:', error);
-                setAvailableGenres([
-                    'драма', 'комедия', 'боевик', 'фантастика', 'триллер',
-                    'мелодрама', 'детектив', 'приключения', 'семейный', 'криминал',
-                    'фэнтези', 'мультфильм', 'ужасы', 'военный', 'биография',
-                    'история', 'документальный', 'короткометражка', 'мюзикл', 'вестерн'
-                ]);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        loadGenres();
-    }, []);
 
     useEffect(() => {
         if (selectedGenres.length > 0) {
@@ -72,6 +50,15 @@ const GenreFilter = observer(({ selectedGenres, onGenreChange }: GenreFilterProp
             <div className="space-y-3">
                 <h3 className="text-lg font-semibold text-gray-800">Жанры</h3>
                 <div className="text-sm text-gray-500">Загрузка жанров...</div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-800">Жанры</h3>
+                <div className="text-sm text-red-500">Ошибка загрузки жанров</div>
             </div>
         );
     }
