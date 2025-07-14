@@ -18,6 +18,7 @@ RUN pnpm run build
 # Production образ
 FROM node:20-alpine AS production
 RUN npm install -g pnpm
+RUN apk add --no-cache curl
 WORKDIR /app
 
 # Копируем package.json и устанавливаем только production зависимости

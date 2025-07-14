@@ -5,7 +5,6 @@ services:
     build: 
       context: .
       dockerfile: Dockerfile
-      target: production
     ports:
       - "3000:3000"
     environment:
@@ -19,18 +18,3 @@ services:
       timeout: 10s
       retries: 3
       start_period: 40s
-    
-  dev:
-    build: .
-    ports:
-      - "5173:5173"
-    volumes:
-      - .:/app
-      - /app/node_modules
-    environment:
-      - NODE_ENV=development
-      - HOST=0.0.0.0
-      - PORT=5173
-    command: pnpm run dev
-    profiles:
-      - dev
