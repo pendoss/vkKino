@@ -41,26 +41,26 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
 
   return (
     <div 
-      className="fixed inset-0  bg-gray-600/25 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-gray-600/25 flex items-center justify-center z-50 p-4"
       onClick={handleBackdropClick}
     >
-      <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
+      <div className="bg-white rounded-lg p-4 sm:p-6 max-w-md w-full mx-4 shadow-xl">
         <h3 id="confirm-modal-title" className="text-lg font-semibold mb-4 text-gray-800">
           Подтверждение действия
         </h3>
-        <p className="text-gray-700 mb-6">
+        <p className="text-gray-700 mb-6 text-sm sm:text-base">
           Добавить фильм <strong>"{movieName}"</strong> в избранное?
         </p>
         <div className="flex gap-3 justify-end">
           <button 
             onClick={onCancel}
-            className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition-colors"
+            className="px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 transition-colors text-sm sm:text-base min-h-[44px]"
           >
             Отмена
           </button>
           <button 
             onClick={onConfirm}
-            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+            className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-sm sm:text-base min-h-[44px]"
           >
             Добавить
           </button>

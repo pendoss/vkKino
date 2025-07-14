@@ -36,21 +36,23 @@ const MovieCard = observer(({ movie }: { movie: Movie }) => {
               className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
             />
           </div>
-          <div className="p-4">
-            <h3 className="text-lg font-semibold mb-2 text-gray-900">{movie.name ? movie.name: movie.alternativeName}</h3>
-            
-            
+          <div className="p-3 sm:p-4">
+            <h3 className="text-base sm:text-lg font-semibold mb-2 text-gray-900 line-clamp-2">
+              {movie.name ? movie.name: movie.alternativeName}
+            </h3>
           </div>
         </Link>
 
-        <div className="p-4 pt-0 mb-0">
-          <p className="text-sm text-gray-500 mb-1">Год выпуска: <span className='font-medium text-gray-700'>{movie.year}</span></p>
-          <p className="text-sm mb-2 text-gray-700">
-              Рейтинг: <span className="font-medium">{average > 0 ? average : 'н/д'}</span>
+        <div className="p-3 sm:p-4 pt-0 mb-0">
+          <p className="text-sm text-gray-500 mb-1">
+            Год выпуска: <span className='font-medium text-gray-700'>{movie.year}</span>
+          </p>
+          <p className="text-sm mb-3 text-gray-700">
+            Рейтинг: <span className="font-medium">{average > 0 ? average : 'н/д'}</span>
           </p>
           <button
             onClick={handleToggleFavorite}
-            className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
+            className={`w-full px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
               isFavorite 
                 ? 'bg-blue-500 text-gray-100 hover:bg-blue-600' 
                 : 'bg-gray-200 text-gray-800 hover:bg-gray-300'

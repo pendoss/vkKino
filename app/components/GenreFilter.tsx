@@ -69,8 +69,8 @@ const GenreFilter = observer(({ selectedGenres, onGenreChange }: GenreFilterProp
     return (
         <div className="space-y-3">
             <div>
-                <h3 className="text-lg font-semibold text-gray-800">Жанры</h3>
-                <p className="text-sm text-gray-500 mt-1">
+                <h3 className="text-base sm:text-lg font-semibold text-gray-800">Жанры</h3>
+                <p className="text-xs sm:text-sm text-gray-500 mt-1">
                     Выберите один или несколько жанров
                 </p>
             </div>
@@ -80,7 +80,7 @@ const GenreFilter = observer(({ selectedGenres, onGenreChange }: GenreFilterProp
                     <button
                         key={genre}
                         onClick={() => handleGenreToggle(genre)}
-                        className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
+                        className={`px-2 sm:px-3 py-1 rounded-full text-xs sm:text-sm font-medium transition-colors min-h-[32px] ${
                             selectedGenres.includes(genre)
                                 ? 'bg-blue-500 text-white hover:bg-blue-600'
                                 : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
@@ -95,7 +95,7 @@ const GenreFilter = observer(({ selectedGenres, onGenreChange }: GenreFilterProp
                 <div className="pt-2">
                     <button
                         onClick={() => setShowAll(!showAll)}
-                        className="text-sm text-blue-600 hover:text-blue-800 font-medium hover:underline"
+                        className="text-xs sm:text-sm text-blue-600 hover:text-blue-800 font-medium hover:underline min-h-[32px]"
                     >
                         {showAll ? 'Свернуть' : `Показать еще ${availableGenres.length - INITIAL_GENRES_COUNT} жанров`}
                     </button>
