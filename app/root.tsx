@@ -22,14 +22,26 @@ export const links: Route.LinksFunction = () => [
     rel: "stylesheet",
     href: "https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap",
   },
+  { rel: "manifest", href: "/manifest.json" },
+  { rel: "icon", href: "/icons/favicon.ico" },
+  { rel: "icon", href: "/icons/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+  { rel: "icon", href: "/icons/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+  { rel: "apple-touch-icon", href: "/icons/apple-touch-icon.png" },
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="ru">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>PoiskKinO</title>
+        <meta name="description" content="Приложение для поиска и просмотра информации о фильмах" />
+        <meta name="theme-color" content="#3b82f6" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="apple-mobile-web-app-title" content="PoiskKinO" />
+        <meta name="msapplication-TileColor" content="#3b82f6" />
         <Meta />
         <Links />
       </head>
