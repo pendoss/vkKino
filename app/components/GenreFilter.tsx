@@ -54,6 +54,15 @@ const GenreFilter = observer(({ selectedGenres, onGenreChange }: GenreFilterProp
         );
     }
 
+    if (error) {
+        return (
+            <div className="space-y-3">
+                <h3 className="text-lg font-semibold text-gray-800">Жанры</h3>
+                <div className="text-sm text-red-500">Ошибка загрузки жанров</div>
+            </div>
+        );
+    }
+
     const displayedGenres = getDisplayedGenres();
     const hasMoreGenres = availableGenres.length > INITIAL_GENRES_COUNT;
 

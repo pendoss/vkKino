@@ -45,7 +45,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
       onClick={handleBackdropClick}
     >
       <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4 shadow-xl">
-        <h3 className="text-lg font-semibold mb-4 text-gray-800">
+        <h3 id="confirm-modal-title" className="text-lg font-semibold mb-4 text-gray-800">
           Подтверждение действия
         </h3>
         <p className="text-gray-700 mb-6">
