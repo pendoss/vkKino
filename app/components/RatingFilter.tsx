@@ -1,5 +1,5 @@
-import React from 'react';
 import { observer } from 'mobx-react-lite';
+import { useNumberRange } from '~/hooks/useNumberRange';
 
 interface RatingFilterProps {
     rating: [number, number];
@@ -7,15 +7,7 @@ interface RatingFilterProps {
 }
 
 const RatingFilter = observer(({ rating, onRatingChange }: RatingFilterProps) => {
-    const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = Math.max(0, Math.min(10, Number(e.target.value)));
-        onRatingChange([value, rating[1]]);
-    };
-
-    const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = Math.max(0, Math.min(10, Number(e.target.value)));
-        onRatingChange([rating[0], value]);
-    };
+    const { minInput, maxInput } = useNumberRange(rating, 0, 10, onRatingChange);
 
     return (
         <div className="space-y-3">
@@ -28,8 +20,9 @@ const RatingFilter = observer(({ rating, onRatingChange }: RatingFilterProps) =>
                         min="0"
                         max="10"
                         step="0.1"
-                        value={rating[0]}
-                        onChange={handleMinChange}
+                        value={minInput.value}
+                        onChange={minInput.onChange}
+                        onBlur={minInput.onBlur}
                         className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base min-h-[44px]"
                     />
                 </div>
@@ -40,8 +33,9 @@ const RatingFilter = observer(({ rating, onRatingChange }: RatingFilterProps) =>
                         min="0"
                         max="10"
                         step="0.1"
-                        value={rating[1]}
-                        onChange={handleMaxChange}
+                        value={maxInput.value}
+                        onChange={maxInput.onChange}
+                        onBlur={maxInput.onBlur}
                         className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base min-h-[44px]"
                     />
                 </div>
