@@ -61,7 +61,6 @@ pnpm install
 ```bash
 cp .env.default .env
 ```
-Отредактируйте файл `.env` и укажите свой API ключ от Кинопоиска.
 
 4. Запуск 
 
