@@ -1,13 +1,14 @@
 import { Link } from 'react-router';
 import { observer } from 'mobx-react-lite';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import favoriteStore from '~/stores/favoriteStore';
 import type { Movie } from '~/types/movie';
 import { avgRating } from '~/utils/ratings';
 import ConfirmModal from './ConfirmModal';
+import { useConfirmModal } from '~/hooks/useConfirmModal';
 
 const MovieCard = observer(({ movie }: { movie: Movie }) => {
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const { showConfirmModal, toggleFavorite, handleConfirmAdd, closeConfirmModal } = useConfirmModal();
   
   useEffect(() => {
     favoriteStore.initializeFavorites();
@@ -16,21 +17,12 @@ const MovieCard = observer(({ movie }: { movie: Movie }) => {
   const isFavorite = favoriteStore.isFavorite(movie.id);
   const average = avgRating(movie.rating);
 
-  const toggleFavorite = () => {
-    if (isFavorite) {
-      favoriteStore.remove(movie.id);
-    } else {
-      setShowConfirmModal(true);
-    }
+  const handleToggleFavorite = () => {
+    toggleFavorite(movie);
   };
 
-  const handleConfirmAdd = () => {
-    favoriteStore.add(movie);
-    setShowConfirmModal(false);
-  };
-
-  const handleCancelAdd = () => {
-    setShowConfirmModal(false);
+  const handleConfirm = () => {
+    handleConfirmAdd(movie);
   };
 
   return (
@@ -57,7 +49,7 @@ const MovieCard = observer(({ movie }: { movie: Movie }) => {
               Рейтинг: <span className="font-medium">{average > 0 ? average : 'н/д'}</span>
           </p>
           <button
-            onClick={toggleFavorite}
+            onClick={handleToggleFavorite}
             className={`w-full px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
               isFavorite 
                 ? 'bg-blue-500 text-gray-100 hover:bg-blue-600' 
@@ -71,8 +63,8 @@ const MovieCard = observer(({ movie }: { movie: Movie }) => {
 
       <ConfirmModal
         isOpen={showConfirmModal}
-        onConfirm={handleConfirmAdd}
-        onCancel={handleCancelAdd}
+        onConfirm={handleConfirm}
+        onCancel={closeConfirmModal}
         movieName={movie.name || movie.alternativeName}
       />
     </>

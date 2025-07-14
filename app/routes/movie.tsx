@@ -1,61 +1,52 @@
-import { useParams, useNavigate } from 'react-router';
-import { useEffect, useState } from 'react';
+import { useParams } from 'react-router';
 import { observer } from 'mobx-react-lite';
-import { fetchMovieById } from '../api/movies';
-import { avgRating } from '~/utils/ratings';
-import type { Movie } from '~/types/movie';
 import favoriteStore from '~/stores/favoriteStore';
 import ConfirmModal from '~/components/ConfirmModal';
+import { useConfirmModal } from '~/hooks/useConfirmModal';
+import { useMovieData } from '~/hooks/useMovieData';
+import { useMovieNavigation } from '~/hooks/useMovieNavigation';
+import { useRatings } from '~/hooks/useRatings';
 
 const MoviePage = observer(() => {
     const { id } = useParams();
-    const navigate = useNavigate();
-    const [movie, setMovie] = useState<Movie | null>(null);
-    const [showConfirmModal, setShowConfirmModal] = useState(false);
-  
-    useEffect(() => {
-        if (id) {
-        fetchMovieById(id).then(setMovie);
-        }
-    }, [id]);
+    const { movie, loading, error } = useMovieData(id);
+    const { navigateToGenre, navigateToYear } = useMovieNavigation();
+    const { showConfirmModal, toggleFavorite, handleConfirmAdd, closeConfirmModal } = useConfirmModal();
+    const { averageRating, hasRatings, ratingItems } = useRatings(movie);
+    
+    if (loading) {
+        return (
+            <div className="flex justify-center mt-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
+            </div>
+        );
+    }
 
-    if (!movie) return ( <div className="flex justify-center mt-8">
-          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-500"></div>
-        </div>);
+    if (error || !movie) {
+        return (
+            <div className="flex justify-center mt-8">
+                <div className="text-red-500">{error || 'Фильм не найден'}</div>
+            </div>
+        );
+    }
 
     const isFavorite = favoriteStore.isFavorite(movie.id);
   
-    const toggleFavorite = () => {
-      if (isFavorite) {
-        favoriteStore.remove(movie.id);
-      } else {
-        setShowConfirmModal(true);
-      }
+    const handleToggleFavorite = () => {
+        toggleFavorite(movie);
     };
 
-    const handleConfirmAdd = () => {
-      favoriteStore.add(movie);
-      setShowConfirmModal(false);
-    };
-
-    const handleCancelAdd = () => {
-      setShowConfirmModal(false);
+    const handleConfirm = () => {
+        handleConfirmAdd(movie);
     };
 
     const handleGenreClick = (genreName: string) => {
-        const params = new URLSearchParams();
-        params.set('genres', encodeURIComponent(genreName));
-        navigate(`/?${params.toString()}`);
+        navigateToGenre(genreName);
     };
 
     const handleYearClick = (year: number) => {
-        const params = new URLSearchParams();
-        params.set('year', `${year}-${year}`);
-        navigate(`/?${params.toString()}`);
+        navigateToYear(year);
     };
-
-    const averageRating = avgRating(movie.rating);
-    const hasRatings = (movie.rating.kp && movie.rating.kp > 0) || (movie.rating.imdb && movie.rating.imdb > 0) || (movie.rating.filmCritics && movie.rating.filmCritics > 0) || (movie.rating.russianFilmCritics && movie.rating.russianFilmCritics > 0);
 
     return (
         <>
@@ -69,7 +60,7 @@ const MoviePage = observer(() => {
                             style={{ minHeight: '320px' }}
                         />
                         <button
-                            onClick={toggleFavorite}
+                            onClick={handleToggleFavorite}
                             className={`w-full px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200 ${
                                 isFavorite 
                                 ? 'bg-blue-500 text-gray-100 hover:bg-blue-600' 
@@ -136,41 +127,14 @@ const MoviePage = observer(() => {
                                         Рейтинги
                                     </h4>
                                     
-                                    {movie.rating.kp && movie.rating.kp > 0 && (
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-gray-700">Кинопоиск</span>
-                                            <span className="font-semibold text-orange-600">
-                                                {movie.rating.kp.toFixed(1)}
+                                    {ratingItems.map((rating, index) => (
+                                        <div key={index} className="flex justify-between items-center">
+                                            <span className="text-gray-700">{rating.name}</span>
+                                            <span className={`font-semibold ${rating.color}`}>
+                                                {rating.value?.toFixed(1)}
                                             </span>
                                         </div>
-                                    )}
-                                    
-                                    {movie.rating.imdb && movie.rating.imdb > 0 && (
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-gray-700">IMDb</span>
-                                            <span className="font-semibold text-yellow-600">
-                                                {movie.rating.imdb.toFixed(1)}
-                                            </span>
-                                        </div>
-                                    )}
-                                    
-                                    {movie.rating.filmCritics && movie.rating.filmCritics > 0 && (
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-gray-700">Критики</span>
-                                            <span className="font-semibold text-purple-600">
-                                                {movie.rating.filmCritics.toFixed(1)}
-                                            </span>
-                                        </div>
-                                    )}
-                                    
-                                    {movie.rating.russianFilmCritics && movie.rating.russianFilmCritics > 0 && (
-                                        <div className="flex justify-between items-center">
-                                            <span className="text-gray-700">Рос. критики</span>
-                                            <span className="font-semibold text-red-600">
-                                                {movie.rating.russianFilmCritics.toFixed(1)}
-                                            </span>
-                                        </div>
-                                    )}
+                                    ))}
                                 </div>
                             ) : (
                                 <p className="text-center text-gray-500 text-sm">
@@ -184,8 +148,8 @@ const MoviePage = observer(() => {
 
             <ConfirmModal
                 isOpen={showConfirmModal}
-                onConfirm={handleConfirmAdd}
-                onCancel={handleCancelAdd}
+                onConfirm={handleConfirm}
+                onCancel={closeConfirmModal}
                 movieName={movie.name || movie.alternativeName}
             />
         </>
