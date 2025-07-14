@@ -61,7 +61,6 @@ const MoviePage = observer(() => {
         <>
             <div className='m-10 mx-20 bg-white border-2 border-blue-500 rounded-lg p-8'>
                 <div className="grid grid-cols-12 gap-8">
-                    {/* Левая колонка - Постер и кнопка */}
                     <div className="col-span-3">
                         <img 
                             src={movie.poster?.url} 
@@ -81,7 +80,6 @@ const MoviePage = observer(() => {
                         </button>
                     </div>
 
-                    {/* Средняя колонка - Информация о фильме */}
                     <div className="col-span-6">
                         <h1 className='text-4xl text-gray-950 font-bold mb-6 leading-tight'>
                             {movie.name ? movie.name : movie.alternativeName}
@@ -123,7 +121,6 @@ const MoviePage = observer(() => {
                         </div>
                     </div>
 
-                    {/* Правая колонка - Рейтинги */}
                     <div className="col-span-3">
                         <div className="bg-gray-50 rounded-lg p-6">
                             <div className="text-center mb-6">
