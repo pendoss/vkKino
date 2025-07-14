@@ -49,7 +49,7 @@
 1. Клонирование репозитория:
 ```bash
 git clone https://github.com/pendoss/vkKino.git
-cd vk-kino
+cd vkKino
 ```
 
 2. Установка зависимостей:
