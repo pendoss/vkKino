@@ -63,6 +63,7 @@ pnpm install
 ```bash
 cp .env.default .env
 ```
+В файле .env вставьте свой токен (его можно получить на сайте https://kinopoisk.dev/)
 
 4. Запуск 
 
