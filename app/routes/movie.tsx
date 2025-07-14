@@ -54,7 +54,7 @@ const MoviePage = observer(() => {
                 <div className="grid grid-cols-12 gap-8">
                     <div className="col-span-3">
                         <img 
-                            src={movie.poster?.url} 
+                            src={movie.poster?.url || 'https://placehold.co/300x400'} 
                             alt={movie.name} 
                             className="w-full aspect-[2/3] object-cover rounded-lg shadow-lg mb-4"
                             style={{ minHeight: '320px' }}
