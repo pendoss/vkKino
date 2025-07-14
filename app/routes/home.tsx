@@ -27,7 +27,7 @@ const HomePage = observer(() => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8">Фильмы</h1>
+      <h1 className="text-2xl sm:text-3xl font-bold text-center mb-6 sm:mb-8 text-gray-900 dark:text-gray-100">Фильмы</h1>
       
       <div className="flex flex-col lg:flex-row gap-6 lg:gap-8">
         <div className="lg:w-80 lg:flex-shrink-0">
@@ -48,7 +48,7 @@ const HomePage = observer(() => {
           )}
           
           {!MovieStore.hasMore && MovieStore.movies.length > 0 && (
-            <div className="text-center mt-8 text-gray-500">
+            <div className="text-center mt-8 text-gray-500 dark:text-gray-400">
               Все фильмы загружены
             </div>
           )}

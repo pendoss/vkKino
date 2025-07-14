@@ -21,28 +21,28 @@ const YearFilter = observer(({ year, onYearChange }: YearFilterProps) => {
 
     return (
         <div className="space-y-3">
-            <h3 className="text-base sm:text-lg font-semibold text-gray-800">Год выпуска</h3>
+            <h3 className="text-base sm:text-lg font-semibold text-gray-800 dark:text-gray-200">Год выпуска</h3>
             <div className="space-y-3">
                 <div className="flex flex-col">
-                    <label className="text-xs sm:text-sm text-gray-600 mb-1">От</label>
+                    <label className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">От</label>
                     <input
                         type="number"
                         min="1990"
                         max={currentYear}
                         value={year[0]}
                         onChange={handleMinChange}
-                        className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base min-h-[44px]"
+                        className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base min-h-[44px]"
                     />
                 </div>
                 <div className="flex flex-col">
-                    <label className="text-xs sm:text-sm text-gray-600 mb-1">До</label>
+                    <label className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">До</label>
                     <input
                         type="number"
                         min="1990"
                         max={currentYear}
                         value={year[1]}
                         onChange={handleMaxChange}
-                        className="w-full px-3 py-2 border text-gray-900 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base min-h-[44px]"
+                        className="w-full px-3 py-2 text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-sm sm:text-base min-h-[44px]"
                     />
                 </div>
             </div>

@@ -24,7 +24,7 @@ const FiltersPanel = observer(() => {
     };
 
     return (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden">
+        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
             <div className="lg:hidden">
                 <button
                     onClick={toggleFilters}
@@ -42,7 +42,7 @@ const FiltersPanel = observer(() => {
                 </button>
             </div>
             <div className={`${isOpen ? 'block' : 'hidden'} lg:block p-4 sm:p-6`}>
-                <h2 className="hidden lg:block text-lg sm:text-xl font-bold text-gray-800 mb-4 sm:mb-6">Фильтры</h2>
+                <h2 className="hidden lg:block text-lg sm:text-xl font-bold text-gray-800 dark:text-gray-200 mb-4 sm:mb-6">Фильтры</h2>
                 
                 <div className="space-y-6 sm:space-y-8">
                     <GenreFilter 
@@ -71,7 +71,7 @@ const FiltersPanel = observer(() => {
                     
                     <button
                         onClick={resetFilters}
-                        className="w-full px-4 sm:px-6 py-2 sm:py-3 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 text-sm sm:text-base"
+                        className="w-full px-4 sm:px-6 py-2 sm:py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 text-sm sm:text-base"
                     >
                         Сбросить
                     </button>
