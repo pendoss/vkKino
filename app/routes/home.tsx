@@ -35,7 +35,7 @@ const HomePage = observer(() => {
         </div>
         
         <div className="flex-1 min-w-0">
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 justify-items-center">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 justify-items-stretch">
             {MovieStore.movies.map((movie: any) => (
               <MovieCard key={movie.id} movie={movie} />
             ))}

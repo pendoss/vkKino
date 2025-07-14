@@ -25,7 +25,6 @@ const FiltersPanel = observer(() => {
 
     return (
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
-            {/* Мобильная кнопка переключения фильтров */}
             <div className="lg:hidden">
                 <button
                     onClick={toggleFilters}
@@ -42,8 +41,6 @@ const FiltersPanel = observer(() => {
                     </svg>
                 </button>
             </div>
-
-            {/* Содержимое фильтров */}
             <div className={`${isOpen ? 'block' : 'hidden'} lg:block p-4 sm:p-6`}>
                 <h2 className="hidden lg:block text-lg sm:text-xl font-bold text-gray-800 mb-4 sm:mb-6">Фильтры</h2>
                 

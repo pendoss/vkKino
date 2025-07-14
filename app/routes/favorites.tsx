@@ -14,7 +14,7 @@ const FavoritesPage = observer(() => {
       {favoriteStore.favorites.length === 0 ? (
         <p className="text-center text-gray-500 text-base sm:text-lg">Нет избранных фильмов</p>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 justify-items-stretch">
           {favoriteStore.favorites.map((movie: any) => (
             <MovieCard key={movie.id} movie={movie} />
           ))}
