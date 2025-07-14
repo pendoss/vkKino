@@ -37,20 +37,18 @@ const MovieCard = observer(({ movie }: { movie: Movie }) => {
             />
           </div>
         </Link>
-        
         <div className="flex flex-col flex-grow p-3 sm:p-4">
-          <Link to={`/movie/${movie.id}`} className="block flex-grow">
-            <h3 className="text-base sm:text-lg font-semibold mb-2 text-gray-900 line-clamp-2">
+          <Link to={`/movie/${movie.id}`} className="block">
+            <h3 className="text-base sm:text-lg font-semibold mb-2 text-gray-900 line-clamp-2 text-center">
               {movie.name ? movie.name: movie.alternativeName}
             </h3>
-            <p className="text-sm text-gray-500 mb-1">
-              Год выпуска: <span className='font-medium text-gray-700'>{movie.year}</span>
-            </p>
-            <p className="text-sm mb-3 text-gray-700">
-              Рейтинг: <span className="font-medium">{average > 0 ? average : 'н/д'}</span>
-            </p>
           </Link>
-          
+          <p className="text-sm text-gray-500 mb-1 text-center">
+            Год выпуска: <span className='font-medium text-gray-700'>{movie.year}</span>
+          </p>
+          <p className="text-sm mb-3 text-gray-700 text-center">
+            Рейтинг: <span className="font-medium">{average > 0 ? average : 'н/д'}</span>
+          </p>
           <button
             onClick={handleToggleFavorite}
             className={`w-full px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 mt-auto ${
@@ -63,7 +61,6 @@ const MovieCard = observer(({ movie }: { movie: Movie }) => {
           </button>
         </div>
       </div>
-
       <ConfirmModal
         isOpen={showConfirmModal}
         onConfirm={handleConfirm}
