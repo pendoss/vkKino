@@ -5,7 +5,7 @@ export const useMovieNavigation = () => {
 
   const navigateToGenre = (genreName: string) => {
     const params = new URLSearchParams();
-    params.set('genres', encodeURIComponent(genreName));
+    params.set('genres', genreName);
     navigate(`/?${params.toString()}`);
   };
 
