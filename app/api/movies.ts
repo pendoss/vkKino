@@ -3,7 +3,7 @@ import axios from 'axios';
 const API = axios.create({
   baseURL: import.meta.env.VITE_KINOPOISK_BASE_URL || 'https://api.kinopoisk.dev/v1.4',
   headers: {
-    'X-API-KEY': import.meta.env.VITE_KINOPOISK_API_KEY || 'H1G2CP3-9W641HN-KWEXWC6-DFXBYD1',
+    'X-API-KEY': import.meta.env.VITE_KINOPOISK_API_KEY || 'AYC9Q30-TVSMFCY-HJWG6AX-FJH1HER',
   },
 });
 
