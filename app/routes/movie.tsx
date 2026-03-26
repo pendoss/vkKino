@@ -61,6 +61,7 @@ const MoviePage = observer(() => {
                         />
                         <button
                             onClick={handleToggleFavorite}
+                            data-testid="movie-page-favorite-toggle"
                             className={`w-full max-w-sm mx-auto lg:max-w-none lg:mx-0 block px-4 py-3 rounded-lg text-sm font-medium transition-colors duration-200 ${
                                 isFavorite 
                                 ? 'bg-blue-500 text-white hover:bg-blue-600' 

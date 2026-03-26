@@ -16,6 +16,7 @@ const RatingFilter = observer(({ rating, onRatingChange }: RatingFilterProps) =>
                 <div className="flex flex-col">
                     <label className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">От</label>
                     <input
+                        data-testid="rating-min-input"
                         type="number"
                         min="0"
                         max="10"
@@ -29,6 +30,7 @@ const RatingFilter = observer(({ rating, onRatingChange }: RatingFilterProps) =>
                 <div className="flex flex-col">
                     <label className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">До</label>
                     <input
+                        data-testid="rating-max-input"
                         type="number"
                         min="0"
                         max="10"

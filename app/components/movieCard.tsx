@@ -27,8 +27,8 @@ const MovieCard = observer(({ movie }: { movie: Movie }) => {
 
   return (
     <>
-      <div className="flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden w-full max-w-sm h-full">
-        <Link to={`/movie/${movie.id}`} className="block flex-shrink-0">
+      <div data-testid="movie-card" className="flex flex-col bg-white dark:bg-gray-800 rounded-2xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden w-full max-w-sm h-full">
+        <Link to={`/movie/${movie.id}`} data-testid="movie-open-link" className="block flex-shrink-0">
           <div className="aspect-[2/3] w-full overflow-hidden">
             <img
               src={movie.poster?.url || 'https://placehold.co/300x400'}
@@ -51,6 +51,7 @@ const MovieCard = observer(({ movie }: { movie: Movie }) => {
           </p>
           <button
             onClick={handleToggleFavorite}
+            data-testid="movie-favorite-toggle"
             className={`w-full px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 mt-auto ${
               isFavorite 
                 ? 'bg-blue-500 text-white hover:bg-blue-600' 

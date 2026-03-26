@@ -41,6 +41,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
 
   return (
     <div 
+      data-testid="confirm-modal"
       className="fixed inset-0 bg-gray-600/25 dark:bg-gray-900/50 flex items-center justify-center z-50 p-4"
       onClick={handleBackdropClick}
     >
@@ -54,12 +55,14 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({
         <div className="flex gap-3 justify-end">
           <button 
             onClick={onCancel}
+            data-testid="confirm-cancel"
             className="px-4 py-2 bg-gray-300 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors text-sm sm:text-base min-h-[44px]"
           >
             Отмена
           </button>
           <button 
             onClick={onConfirm}
+            data-testid="confirm-submit"
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors text-sm sm:text-base min-h-[44px]"
           >
             Добавить

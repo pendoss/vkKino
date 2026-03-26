@@ -24,7 +24,7 @@ const FiltersPanel = observer(() => {
     };
 
     return (
-        <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
+        <div data-testid="filters-panel" className="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden">
             <div className="lg:hidden">
                 <button
                     onClick={toggleFilters}
@@ -64,6 +64,7 @@ const FiltersPanel = observer(() => {
                 <div className="flex flex-col sm:flex-col space-y-3 mt-6 sm:mt-8">
                     <button
                         onClick={applyFilters}
+                        data-testid="filters-apply"
                         className="w-full px-4 sm:px-6 py-2 sm:py-3 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-sm sm:text-base"
                     >
                         Применить
@@ -71,6 +72,7 @@ const FiltersPanel = observer(() => {
                     
                     <button
                         onClick={resetFilters}
+                        data-testid="filters-reset"
                         className="w-full px-4 sm:px-6 py-2 sm:py-3 bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 text-sm sm:text-base"
                     >
                         Сбросить

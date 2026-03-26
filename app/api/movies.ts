@@ -1,9 +1,11 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_KINOPOISK_BASE_URL || 'https://api.kinopoisk.dev/v1.4',
+  baseURL: import.meta.env.VITE_KINOPOISK_BASE_URL || 'https://api.poiskkino.dev:443/v1.4',
   headers: {
     'X-API-KEY': import.meta.env.VITE_KINOPOISK_API_KEY || 'AYC9Q30-TVSMFCY-HJWG6AX-FJH1HER',
+    'Access-Control-Allow-Origin': "https://api.poiskkino.dev/v1.4",
+    'accept': 'application/json',
   },
 });
 
@@ -146,7 +148,7 @@ export const fetchPossibleGenres = async (): Promise<{ name: string; slug: strin
   }
 
   try {
-    const response = await axios.get('https://api.kinopoisk.dev/v1/movie/possible-values-by-field?field=genres.name', {
+    const response = await axios.get('https://api.poiskkino.dev:443/v1/movie/possible-values-by-field?field=genres.name', {
       headers: {
         'X-API-KEY': import.meta.env.VITE_KINOPOISK_API_KEY || 'H1G2CP3-9W641HN-KWEXWC6-DFXBYD1',
       },

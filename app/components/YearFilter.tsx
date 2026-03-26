@@ -17,6 +17,7 @@ const YearFilter = observer(({ year, onYearChange }: YearFilterProps) => {
                 <div className="flex flex-col">
                     <label className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">От</label>
                     <input
+                        data-testid="year-min-input"
                         type="number"
                         min="1990"
                         max={currentYear}
@@ -29,6 +30,7 @@ const YearFilter = observer(({ year, onYearChange }: YearFilterProps) => {
                 <div className="flex flex-col">
                     <label className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mb-1">До</label>
                     <input
+                        data-testid="year-max-input"
                         type="number"
                         min="1990"
                         max={currentYear}

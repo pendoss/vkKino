@@ -7,3 +7,5 @@
 .env.production.local
 /.react-router/
 /build/
+.github/
+.idea/
